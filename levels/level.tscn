@@ -1,12 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bm8hg8jvdgnfp"]
+[gd_scene load_steps=3 format=3 uid="uid://bm8hg8jvdgnfp"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_8s7ee"]
+[ext_resource type="Script" path="res://camera.gd" id="2_okxdc"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_8s7ee")
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="CameraRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.70137, 0.712798, 0, -0.712798, 0.70137, 0, 0, 0)
-projection = 1
+
+[node name="Camera" type="Camera3D" parent="CameraRoot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
 current = true
+fov = 40.0
+size = 10.0
+script = ExtResource("2_okxdc")

@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://oswx21i54voy"]
+[gd_scene load_steps=5 format=3 uid="uid://oswx21i54voy"]
 
 [ext_resource type="PackedScene" uid="uid://bm8hg8jvdgnfp" path="res://levels/level.tscn" id="1_2dyik"]
+[ext_resource type="PackedScene" uid="uid://dj26sacnhty4r" path="res://addons/devblocks/blocks/basic_block.tscn" id="2_2eh62"]
+[ext_resource type="PackedScene" uid="uid://3skao5t4re3j" path="res://characters/sonic/sonic.tscn" id="3_gidty"]
+[ext_resource type="Script" path="res://players/player_controller.gd" id="4_74aw3"]
 
 [node name="TestLevel" instance=ExtResource("1_2dyik")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+
+[node name="Camera" parent="CameraRoot" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(-0.565154, 0.64213, -0.517948, 0, 0.627827, 0.778353, 0.824985, 0.439889, -0.354819, 0, 4, 0)
+
+[node name="Ground" parent="." index="2" instance=ExtResource("2_2eh62")]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.5, 0)
+
+[node name="Sonic" parent="." index="3" instance=ExtResource("3_gidty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="PlayerController" type="Node" parent="Sonic" index="3" node_paths=PackedStringArray("character")]
+script = ExtResource("4_74aw3")
+character = NodePath("..")

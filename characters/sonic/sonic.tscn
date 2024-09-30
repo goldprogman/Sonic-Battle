@@ -1,0 +1,159 @@
+[gd_scene load_steps=14 format=3 uid="uid://3skao5t4re3j"]
+
+[ext_resource type="PackedScene" uid="uid://42suk7rdo5uj" path="res://characters/character.tscn" id="1_2nqcm"]
+[ext_resource type="Texture2D" uid="uid://da2kchrno01ui" path="res://assets/Sonic.png" id="2_y54io"]
+[ext_resource type="Script" path="res://characters/sonic/animation_behaviour_tree.gd" id="3_q2f32"]
+[ext_resource type="Script" path="res://characters/sonic/is_moving.gd" id="4_2tfxp"]
+[ext_resource type="Script" path="res://characters/sonic/idle.gd" id="5_smipc"]
+
+[sub_resource type="Animation" id="Animation_gpu2j"]
+resource_name = "RESET"
+length = 0.0333367
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qrngt"]
+resource_name = "idle"
+length = 0.500008
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_a5jj8"]
+resource_name = "running"
+length = 0.583342
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vl27x"]
+resource_name = "start_running"
+length = 0.0833417
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gu6ok"]
+resource_name = "stopping"
+length = 0.333342
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_4fyhi"]
+resource_name = "turning_around"
+length = 0.250008
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_7svq7"]
+resource_name = "turning_around_while_running"
+length = 0.333342
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7q0fg"]
+_data = {
+"RESET": SubResource("Animation_gpu2j"),
+"idle": SubResource("Animation_qrngt"),
+"running": SubResource("Animation_a5jj8"),
+"start_running": SubResource("Animation_vl27x"),
+"stopping": SubResource("Animation_gu6ok"),
+"turning_around": SubResource("Animation_4fyhi"),
+"turning_around_while_running": SubResource("Animation_7svq7")
+}
+
+[node name="Sonic" groups=["characters"] instance=ExtResource("1_2nqcm")]
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_y54io")
+hframes = 8
+vframes = 6
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_7q0fg")
+}
+
+[node name="BehaviourTree" type="Node" parent="AnimationPlayer" index="0"]
+script = ExtResource("3_q2f32")
+
+[node name="IsMoving" type="Node" parent="AnimationPlayer/BehaviourTree" index="0"]
+script = ExtResource("4_2tfxp")
+
+[node name="Idle" type="Node" parent="AnimationPlayer/BehaviourTree/IsMoving" index="0"]
+script = ExtResource("5_smipc")
