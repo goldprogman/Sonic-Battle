@@ -7,9 +7,6 @@
 
 [node name="TestLevel" instance=ExtResource("1_2dyik")]
 
-[node name="Camera" parent="CameraRoot" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
 transform = Transform3D(-0.565154, 0.64213, -0.517948, 0, 0.627827, 0.778353, 0.824985, 0.439889, -0.354819, 0, 4, 0)
 

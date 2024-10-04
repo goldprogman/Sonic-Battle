@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://3skao5t4re3j"]
+[gd_scene load_steps=17 format=3 uid="uid://3skao5t4re3j"]
 
 [ext_resource type="PackedScene" uid="uid://42suk7rdo5uj" path="res://characters/character.tscn" id="1_2nqcm"]
 [ext_resource type="Texture2D" uid="uid://da2kchrno01ui" path="res://assets/Sonic.png" id="2_y54io"]
-[ext_resource type="Script" path="res://characters/sonic/animation_behaviour_tree.gd" id="3_q2f32"]
-[ext_resource type="Script" path="res://characters/sonic/is_moving.gd" id="4_2tfxp"]
-[ext_resource type="Script" path="res://characters/sonic/idle.gd" id="5_smipc"]
+[ext_resource type="Script" path="res://characters/sonic/animation_bt/animation_behaviour_tree.gd" id="3_q2f32"]
+[ext_resource type="Script" path="res://characters/sonic/animation_bt/movement_style.gd" id="4_2tfxp"]
+[ext_resource type="Script" path="res://characters/sonic/animation_bt/idle.gd" id="5_smipc"]
+[ext_resource type="Script" path="res://characters/sonic/animation_bt/start_running.gd" id="6_7j1kw"]
+[ext_resource type="Script" path="res://ai/behaviour_tree/sequencer.gd" id="6_kj0jl"]
+[ext_resource type="Script" path="res://characters/sonic/animation_bt/run.gd" id="8_iwxmf"]
 
 [sub_resource type="Animation" id="Animation_gpu2j"]
 resource_name = "RESET"
@@ -152,8 +155,17 @@ libraries = {
 [node name="BehaviourTree" type="Node" parent="AnimationPlayer" index="0"]
 script = ExtResource("3_q2f32")
 
-[node name="IsMoving" type="Node" parent="AnimationPlayer/BehaviourTree" index="0"]
+[node name="MovementStyle" type="Node" parent="AnimationPlayer/BehaviourTree" index="0"]
 script = ExtResource("4_2tfxp")
 
-[node name="Idle" type="Node" parent="AnimationPlayer/BehaviourTree/IsMoving" index="0"]
+[node name="Idle" type="Node" parent="AnimationPlayer/BehaviourTree/MovementStyle" index="0"]
 script = ExtResource("5_smipc")
+
+[node name="StartRunning" type="Node" parent="AnimationPlayer/BehaviourTree/MovementStyle" index="1"]
+script = ExtResource("6_kj0jl")
+
+[node name="Start" type="Node" parent="AnimationPlayer/BehaviourTree/MovementStyle/StartRunning" index="0"]
+script = ExtResource("6_7j1kw")
+
+[node name="Run" type="Node" parent="AnimationPlayer/BehaviourTree/MovementStyle/StartRunning" index="1"]
+script = ExtResource("8_iwxmf")

@@ -6,34 +6,10 @@
 #
 # THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## The main camera found in levels.
-extends Camera3D
-class_name Camera
+extends BehaviourTreeLeaf
 
 
-@export var movement_speed := 1.0
-@export var rotation_speed := 5.0
-
-@onready var root: Node3D = %CameraRoot
-@onready var position_target: Node3D = %CameraRoot/PositionTarget
-@onready var rotation_target: Node3D = %CameraRoot/RotationTarget
-
-
-func _process(delta):
-	var target_position := Vector3.ZERO
-
-	for character: Character in get_tree().get_nodes_in_group("characters"):
-		target_position += character.global_position
-	
-	target_position /= get_tree().get_node_count_in_group("characters")
-
-	position_target.global_position = position_target.global_position.lerp(
-		target_position, min(delta * movement_speed, 1.0))
-	
-	rotation_target.global_position = rotation_target.global_position.lerp(
-		target_position, min(delta * rotation_speed, 1.0))
-	
-	root.global_position = position_target.global_position
-	look_at_from_position(global_position, rotation_target.global_position)
+func activated():
+	blackboard.animation_player.play('start_running')
+	root.active_path.pop_back()
 	return
-

@@ -6,11 +6,15 @@
 #
 # THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-extends BehaviourTree
+extends BehaviourTreeLeaf
 
 
-func _ready():
-	blackboard.animation_player = get_parent()
-	super._ready()
+func activated(): blackboard.animation_player.play('running')
+
+
+func tick(delta: float):
+	if blackboard.character.target_velocity.length() <= 0.01:
+		for i in range(2): root.active_path.pop_back()
+		root.evaluate()
 	return
 

@@ -9,9 +9,18 @@ script = ExtResource("1_8s7ee")
 [node name="CameraRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="Camera" type="Camera3D" parent="CameraRoot"]
+[node name="PositionTarget" type="Node3D" parent="CameraRoot"]
+top_level = true
+
+[node name="RotationTarget" type="Node3D" parent="CameraRoot"]
+top_level = true
+
+[node name="Pivot" type="Node3D" parent="CameraRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+
+[node name="Camera" type="Camera3D" parent="CameraRoot/Pivot"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 current = true
 fov = 40.0
 size = 10.0
