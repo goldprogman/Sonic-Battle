@@ -76,7 +76,8 @@ func _notification(what):
 		MainLoop.NOTIFICATION_APPLICATION_FOCUS_OUT:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		MainLoop.NOTIFICATION_APPLICATION_FOCUS_IN:
-			Input.mouse_mode = mouse_mode_stack.values()[-1]
+			if len(mouse_mode_stack) > 0:
+				Input.mouse_mode = mouse_mode_stack.values()[-1]
 	return
 
 
