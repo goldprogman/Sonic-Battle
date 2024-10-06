@@ -14,11 +14,7 @@ extends AnimationTree
 ## Is the character jumping?
 @export var jumping := false
 ## Is the character currently on the ground?
-@export var grounded := true:
-	set(val):
-		grounded = val
-		if grounded: print('Grounded')
-		else: print('Not Grounded')
+@export var grounded := true
 
 # References
 @onready var character: Character = owner
