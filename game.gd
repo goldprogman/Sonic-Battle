@@ -63,6 +63,10 @@ func cancel_delay(key: int) -> Dictionary:
 func _process(delta):
 	for key in delayed_calls.keys():
 		var val = delayed_calls[key]
+		if !is_instance_valid(val.function.get_object()):
+			delayed_calls.erase(key)
+			continue
+		
 		val.time -= delta if typeof(val.time) == TYPE_FLOAT else 1
 		if val.time <= 0:
 			val.function.call()
