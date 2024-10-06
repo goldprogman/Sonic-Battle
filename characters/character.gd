@@ -32,7 +32,7 @@ func _physics_process(delta: float):
 
 	var weight := delta
 	
-	if target_velocity.length() <= 0.01: weight *= deceleration
+	if corrected_target_velocity.length() <= 0.01: weight *= deceleration
 	else:
 		weight *= acceleration
 		weight *= lerp(turning_boost, 1.0,
@@ -47,6 +47,7 @@ func _physics_process(delta: float):
 	
 	corrected_target_velocity.y = velocity.y
 	velocity = velocity.lerp(corrected_target_velocity, min(weight, 1.0))
+	if velocity.length() <= 0.1: velocity = Vector3.ZERO
 
 	move_and_slide()
 
