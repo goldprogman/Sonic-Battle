@@ -54,7 +54,7 @@ func delay(function: Callable, time = 1, repeat := 0) -> Dictionary:
 
 ## Cancel a delay and returns delay data, including `err`.
 func cancel_delay(key: int) -> Dictionary:
-	if not key in delayed_calls: assert(false); return {'err': ERR.NOT_FOUND}
+	if !(key in delayed_calls.keys()): return {'err': ERR.NOT_FOUND}
 	var out := {'err': ERR.OK, 'data': delayed_calls[key]}
 	delayed_calls.erase(key)
 	return out
