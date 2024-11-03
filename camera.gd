@@ -28,4 +28,3 @@ func _process(delta):
 	root.global_position = position_target.global_position
 	look_at_from_position(global_position, rotation_target.global_position)
 	return
-

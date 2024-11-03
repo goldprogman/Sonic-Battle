@@ -2,7 +2,7 @@
 extends AnimationTree
 
 
-@export_category('Conditions')
+@export_category("Conditions")
 ## Is the character attempting to affect it's velocity?
 @export var input_active := false
 ## Is the character moving at any considerable speed?
@@ -30,9 +30,9 @@ var input_active_off_delay := -1:
 
 
 func _ready():
-	character.connect('jump_start', func(): jumping = true)
-	character.connect('left_ground', func(): grounded = false)
-	character.connect('landed', func(): grounded = true)
+	character.connect("jump_start", func(): jumping = true)
+	character.connect("left_ground", func(): grounded = false)
+	character.connect("landed", func(): grounded = true)
 	return
 
 

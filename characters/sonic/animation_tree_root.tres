@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=36 format=3 uid="uid://dsn8ociahewxv"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=37 format=3 uid="uid://dsn8ociahewxv"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2q0d8"]
 animation = &"falling"
@@ -37,6 +37,9 @@ animation = &"turning_around_while_running"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vd460"]
 animation = &"turning_around"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qwhng"]
+animation = &"walking"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xs6nw"]
 advance_mode = 2
 
@@ -46,11 +49,6 @@ advance_expression = "flipping"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_alt5i"]
 priority = 2
-advance_mode = 2
-advance_expression = "input_active"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ymcog"]
-switch_mode = 2
 advance_mode = 2
 advance_expression = "input_active"
 
@@ -105,19 +103,26 @@ advance_expression = "!input_active and !running"
 advance_mode = 2
 advance_expression = "flipping"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ymcog"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "input_active"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0ntgs"]
 states/End/position = Vector2(124, 100)
 states/Idle/node = SubResource("AnimationNodeAnimation_xm7s7")
 states/Idle/position = Vector2(293, 100)
 states/Running/node = SubResource("AnimationNodeStateMachine_gigxc")
-states/Running/position = Vector2(711, 84)
+states/Running/position = Vector2(752, 100)
 states/Stopping/node = SubResource("AnimationNodeAnimation_v5o6d")
-states/Stopping/position = Vector2(363, 249)
+states/Stopping/position = Vector2(420, 249)
 "states/Turning Around/node" = SubResource("AnimationNodeAnimation_vd460")
-"states/Turning Around/position" = Vector2(510, -31)
+"states/Turning Around/position" = Vector2(420, -31)
 "states/Turning Around While Running/node" = SubResource("AnimationNodeAnimation_nq7iy")
 "states/Turning Around While Running/position" = Vector2(649, 249)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_xs6nw"), "Idle", "Turning Around", SubResource("AnimationNodeStateMachineTransition_fwhxw"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_alt5i"), "Turning Around", "Running", SubResource("AnimationNodeStateMachineTransition_ymcog"), "Turning Around", "Idle", SubResource("AnimationNodeStateMachineTransition_l0wpj"), "Running", "Turning Around", SubResource("AnimationNodeStateMachineTransition_owfj4"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_rm1qm"), "Running", "Stopping", SubResource("AnimationNodeStateMachineTransition_jce3j"), "Running", "Turning Around While Running", SubResource("AnimationNodeStateMachineTransition_nxqiq"), "Turning Around While Running", "Running", SubResource("AnimationNodeStateMachineTransition_8hkxn"), "Turning Around While Running", "Stopping", SubResource("AnimationNodeStateMachineTransition_mykn6"), "Stopping", "Idle", SubResource("AnimationNodeStateMachineTransition_d6d53"), "Stopping", "Running", SubResource("AnimationNodeStateMachineTransition_wqhfv"), "Turning Around While Running", "Idle", SubResource("AnimationNodeStateMachineTransition_8v7wj"), "Stopping", "Turning Around", SubResource("AnimationNodeStateMachineTransition_dto57")]
+states/walking/node = SubResource("AnimationNodeAnimation_qwhng")
+states/walking/position = Vector2(649, -31)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_xs6nw"), "Idle", "Turning Around", SubResource("AnimationNodeStateMachineTransition_fwhxw"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_alt5i"), "Turning Around", "Idle", SubResource("AnimationNodeStateMachineTransition_l0wpj"), "Running", "Turning Around", SubResource("AnimationNodeStateMachineTransition_owfj4"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_rm1qm"), "Running", "Stopping", SubResource("AnimationNodeStateMachineTransition_jce3j"), "Running", "Turning Around While Running", SubResource("AnimationNodeStateMachineTransition_nxqiq"), "Turning Around While Running", "Running", SubResource("AnimationNodeStateMachineTransition_8hkxn"), "Turning Around While Running", "Stopping", SubResource("AnimationNodeStateMachineTransition_mykn6"), "Stopping", "Idle", SubResource("AnimationNodeStateMachineTransition_d6d53"), "Stopping", "Running", SubResource("AnimationNodeStateMachineTransition_wqhfv"), "Turning Around While Running", "Idle", SubResource("AnimationNodeStateMachineTransition_8v7wj"), "Stopping", "Turning Around", SubResource("AnimationNodeStateMachineTransition_dto57"), "Turning Around", "Running", SubResource("AnimationNodeStateMachineTransition_ymcog")]
 graph_offset = Vector2(-76, -75)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fj4s1"]
@@ -167,4 +172,4 @@ states/Landing/node = SubResource("AnimationNodeAnimation_e5lw6")
 states/Landing/position = Vector2(443, 185.298)
 states/Start/position = Vector2(173, 118)
 transitions = ["Start", "Grounded", SubResource("AnimationNodeStateMachineTransition_6unf0"), "Grounded", "Jumping", SubResource("AnimationNodeStateMachineTransition_otwao"), "Jumping", "Falling", SubResource("AnimationNodeStateMachineTransition_hd5ow"), "Falling", "Landing", SubResource("AnimationNodeStateMachineTransition_ris6w"), "Landing", "Grounded", SubResource("AnimationNodeStateMachineTransition_pl0rs"), "Grounded", "Falling", SubResource("AnimationNodeStateMachineTransition_ckjl4"), "Jumping", "Landing", SubResource("AnimationNodeStateMachineTransition_81cac")]
-graph_offset = Vector2(-181, -87.702)
+graph_offset = Vector2(-413.722, -27.098)

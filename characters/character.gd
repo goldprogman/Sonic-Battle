@@ -24,8 +24,8 @@ var grounded := true:
 	set(value):
 		if value == grounded: return
 		grounded = value
-		if grounded: emit_signal('landed')
-		else: emit_signal('left_ground')
+		if grounded: emit_signal("landed")
+		else: emit_signal("left_ground")
 		return
 var target_velocity := Vector2.ZERO:
 	set(val): target_velocity = val.limit_length(1.0)
@@ -37,7 +37,7 @@ func jump():
 	floor_scan.enabled = false
 	Game.delay(func(): floor_scan.enabled = true)
 	grounded = false
-	emit_signal('jump_start')
+	emit_signal("jump_start")
 	return
 
 
@@ -71,4 +71,3 @@ func _physics_process(delta: float):
 	if velocity.length() <= 0.1: velocity = Vector3.ZERO
 
 	move_and_slide()
-
