@@ -28,8 +28,18 @@ func _input(_event):
 		#if KEY_D in keys_down: new_target_velocity.x += 1
 		#if KEY_G in keys_down: new_target_velocity *= 0.3
 		#character.target_velocity = new_target_velocity
+	# The jump input
 	if Input.is_action_just_pressed("jump"): character.jump()
+	# The attack input
+	if Input.is_action_just_pressed("attack"): character.attack()
 	var new_target_velocity = Input.get_vector("move_left", "move_right", "move_down", "move_up")
-	if Input.is_action_pressed("move_modifier"): new_target_velocity *= 0.3
+
+#	var camera_rotation = _get_camera_basis()
+
+#	new_target_velocity = Vector2(new_target_velocity).rotated(camera_rotation).normalized()
 	character.target_velocity=new_target_velocity
 	return
+
+
+#func _get_camera_basis() -> float:
+#	return get_viewport().get_camera_3d().basis.get_euler().y
