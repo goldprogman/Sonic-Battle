@@ -1,4 +1,106 @@
-[gd_resource type="AnimationLibrary" load_steps=13 format=3 uid="uid://bvo7n2hqbhjn2"]
+[gd_resource type="AnimationLibrary" load_steps=20 format=3 uid="uid://bvo7n2hqbhjn2"]
+
+[sub_resource type="Animation" id="Animation_4ai7v"]
+resource_name = "1st neutral (1)"
+length = 0.200002
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-2.98023e-08, 0.05, 0.0833333, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_3c66b"]
+resource_name = "1st neutral (2)"
+length = 0.133335
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.066667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(4, 6), Vector2i(5, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_uuy0f"]
+resource_name = "2nd neutral (1)"
+length = 0.200002
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.0833333, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_xrl76"]
+resource_name = "2nd neutral (2)"
+length = 0.200002
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.0833334, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7), Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dpsjb"]
+resource_name = "3rd neutral (1)"
+length = 0.200002
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.0833333, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(2, 8), Vector2i(3, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_vel2n"]
+resource_name = "3rd neutral (2)"
+length = 0.283336
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.0833334, 0.15, 0.216667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 8), Vector2i(4, 8), Vector2i(5, 8), Vector2i(6, 8), Vector2i(7, 8)]
+}
 
 [sub_resource type="Animation" id="Animation_gpu2j"]
 resource_name = "RESET"
@@ -28,6 +130,23 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_lc3f6"]
+resource_name = "block"
+length = 0.100002
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(4, 1), Vector2i(5, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_tv7me"]
 resource_name = "falling"
 length = 0.26667
@@ -46,8 +165,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qrngt"]
 resource_name = "idle"
-length = 0.600003
+length = 0.500002
 loop_mode = 1
+step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -55,7 +175,7 @@ tracks/0/path = NodePath("Sprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0)]
@@ -105,22 +225,6 @@ tracks/0/keys = {
 "values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4)]
 }
 
-[sub_resource type="Animation" id="Animation_4ai7v"]
-resource_name = "punch"
-length = 0.333337
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-2.98023e-08, 0.0666667, 0.1, 0.133333, 0.2, 0.266667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6)]
-}
-
 [sub_resource type="Animation" id="Animation_a5jj8"]
 resource_name = "running"
 length = 0.533337
@@ -140,8 +244,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_vl27x"]
 resource_name = "start_running"
-length = 0.0833417
-step = 0.0833333
+length = 0.083335
+step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -227,6 +331,23 @@ tracks/1/keys = {
 "values": [true, true, true, false, false]
 }
 
+[sub_resource type="Animation" id="Animation_80vhy"]
+resource_name = "unblock"
+length = 0.0666683
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(6, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_srndn"]
 resource_name = "walking"
 length = 0.6667
@@ -247,16 +368,23 @@ tracks/0/keys = {
 
 [resource]
 _data = {
+"1st neutral (1)": SubResource("Animation_4ai7v"),
+"1st neutral (2)": SubResource("Animation_3c66b"),
+"2nd neutral (1)": SubResource("Animation_uuy0f"),
+"2nd neutral (2)": SubResource("Animation_xrl76"),
+"3rd neutral (1)": SubResource("Animation_dpsjb"),
+"3rd neutral (2)": SubResource("Animation_vel2n"),
 "RESET": SubResource("Animation_gpu2j"),
+"block": SubResource("Animation_lc3f6"),
 "falling": SubResource("Animation_tv7me"),
 "idle": SubResource("Animation_qrngt"),
 "jumping": SubResource("Animation_qbaxr"),
 "landing": SubResource("Animation_qy6ty"),
-"punch": SubResource("Animation_4ai7v"),
 "running": SubResource("Animation_a5jj8"),
 "start_running": SubResource("Animation_vl27x"),
 "stopping": SubResource("Animation_gu6ok"),
 "turning_around": SubResource("Animation_4fyhi"),
 "turning_around_while_running": SubResource("Animation_7svq7"),
+"unblock": SubResource("Animation_80vhy"),
 "walking": SubResource("Animation_srndn")
 }

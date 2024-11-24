@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://42suk7rdo5uj"]
+[gd_scene load_steps=10 format=3 uid="uid://42suk7rdo5uj"]
 
 [ext_resource type="Script" path="res://characters/character.gd" id="1_43dcs"]
-[ext_resource type="Texture2D" uid="uid://ntmurf5ljn3" path="res://assets/Floor_Shad.png" id="2_ppsnc"]
+[ext_resource type="Shader" path="res://assets/shader/dropshadowcut.gdshader" id="2_4ka3q"]
+[ext_resource type="Shader" path="res://assets/shader/dropshadow.gdshader" id="2_hvhnt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t1l3m"]
 radius = 0.4
@@ -11,18 +12,37 @@ height = 1.5
 radius = 0.4
 height = 0.8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wimw5"]
-blend_mode = 3
-shading_mode = 0
-specular_mode = 2
-albedo_texture = ExtResource("2_ppsnc")
-texture_filter = 0
-texture_repeat = false
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fivk0"]
+render_priority = 0
+shader = ExtResource("2_4ka3q")
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/near_far = Vector2(0.1, 100)
+shader_parameter/inval = 4.0
+shader_parameter/match = 0.0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_7t6hc"]
-material = SubResource("StandardMaterial3D_wimw5")
-size = Vector2(1.2, 1.2)
-center_offset = Vector3(0, 0.05, 0)
+[sub_resource type="CylinderMesh" id="CylinderMesh_cwbj0"]
+material = SubResource("ShaderMaterial_fivk0")
+bottom_radius = 0.0
+height = 8.0
+radial_segments = 12
+rings = 0
+cap_bottom = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tw3gn"]
+render_priority = 0
+shader = ExtResource("2_hvhnt")
+shader_parameter/base_color = Color(0, 0, 0, 0.8)
+shader_parameter/near_far = Vector2(0.1, 100)
+shader_parameter/inval = 0.0
+shader_parameter/match = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_b3vxf"]
+material = SubResource("ShaderMaterial_tw3gn")
+bottom_radius = 0.0
+height = 8.0
+radial_segments = 12
+rings = 0
+cap_bottom = false
 
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 3
@@ -66,14 +86,13 @@ unique_name_in_owner = true
 root_node = NodePath("%AnimationPlayer/..")
 anim_player = NodePath("..")
 
-[node name="FloorShad" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-mesh = SubResource("PlaneMesh_7t6hc")
+[node name="DropShadC" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.7, 0)
+mesh = SubResource("CylinderMesh_cwbj0")
 
-[node name="FloorShadScan" type="RayCast3D" parent="."]
-unique_name_in_owner = true
-target_position = Vector3(0, -6, 0)
-collision_mask = 2
+[node name="DropShadB" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.7, 0)
+mesh = SubResource("CylinderMesh_b3vxf")
 
 [connection signal="body_entered" from="FloorScanArea" to="." method="_on_floor_scan_area_body_entered"]
 [connection signal="body_exited" from="FloorScanArea" to="." method="_on_floor_scan_area_body_exited"]

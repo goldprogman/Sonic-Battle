@@ -3,8 +3,8 @@ extends Camera3D
 class_name Camera
 
 
-@export var movement_speed := 4.0
-@export var rotation_speed := 4.0
+@export var movement_speed := 5.0
+@export var rotation_speed := 5.0
 
 @onready var root: Node3D = %CameraRoot
 @onready var position_target: Node3D = %CameraRoot/PositionTarget
@@ -19,7 +19,7 @@ func _process(delta):
 	
 	target_position /= get_tree().get_node_count_in_group("characters")
 
-	var target_position_2 := Vector3(target_position.x/1.3, target_position.y/2, target_position.z)
+	var target_position_2 := Vector3(target_position.x/1.3, target_position.y/1.2, target_position.z)
 
 	position_target.global_position = position_target.global_position.lerp(
 		target_position_2, min(delta * movement_speed, 1.0))

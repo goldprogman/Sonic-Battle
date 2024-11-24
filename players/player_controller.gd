@@ -5,6 +5,7 @@ class_name PlayerController
 
 @export var character: Character = null
 
+var screen_res:= true
 
 var keys_down := []
 func _input(_event):
@@ -34,12 +35,15 @@ func _input(_event):
 	if Input.is_action_just_pressed("attack"): character.attack()
 	var new_target_velocity = Input.get_vector("move_left", "move_right", "move_down", "move_up")
 
-#	var camera_rotation = _get_camera_basis()
-
-#	new_target_velocity = Vector2(new_target_velocity).rotated(camera_rotation).normalized()
 	character.target_velocity=new_target_velocity
+
+	if Input.is_action_just_pressed("pause"): screen_res = not screen_res
+	if screen_res:
+		get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
+	else:
+		get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
+
+	if Input.is_action_pressed("block"): character.block(true)
+	if Input.is_action_just_released("block"): character.block(false)
+
 	return
-
-
-#func _get_camera_basis() -> float:
-#	return get_viewport().get_camera_3d().basis.get_euler().y

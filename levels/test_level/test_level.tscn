@@ -52,6 +52,7 @@ script = ExtResource("4_74aw3")
 character = NodePath("..")
 
 [node name="EmCo" parent="." index="3" instance=ExtResource("5_nvv74")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="EmCo" index="1"]
 collision_layer = 3
@@ -86,8 +87,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -7)
 shape = SubResource("BoxShape3D_3aubs")
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69937, 0.724337, -8.57002)
-pixel_size = 0.03
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.69937, 0.888314, -8.57002)
+pixel_size = 0.04
 billboard = 1
 double_sided = false
 texture_filter = 0

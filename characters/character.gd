@@ -7,6 +7,9 @@ signal jump_start
 signal left_ground
 signal landed
 signal is_attacking
+signal blocking
+signal unblocking
+signal attack_count(count)
 
 
 @export var max_speed := 8.0
@@ -22,14 +25,15 @@ signal is_attacking
 var gravity := fall_gravity
 
 var isAttack := false
+var attackCount := 0
+var atkCountDown:= 0
+
+var isBlocking := false
 
 #@onready var floor_scan: RayCast3D = %FloorScanRay
 
 @onready var floor_scan: Area3D = %FloorScanArea
 @onready var floor_scan_collision: CollisionShape3D = %FlrScnArCol
-
-@onready var floor_shad_scan: RayCast3D = %FloorShadScan
-@onready var floor_shad: MeshInstance3D = %FloorShad
 
 ## Set the grounded variable, and emit related signals.
 var grounded := true:
@@ -66,6 +70,24 @@ func attack():
 	if grounded:
 		emit_signal("is_attacking")
 		isAttack = true
+		if atkCountDown < 12:
+			attackCount += 1
+			atkCountDown = 24
+	return
+
+
+func block(isB: bool):
+	if isB:
+		if grounded:
+			emit_signal("blocking")
+			isBlocking = true
+			atkCountDown = 0
+			attackCount = 0
+		else:
+			isBlocking = false
+	else:
+		emit_signal("unblocking")
+		isBlocking = false
 	return
 
 
@@ -79,17 +101,12 @@ func _ready():
 ## Non-physics related code.
 func _process(delta):
 	# Sets the drop shadow to the floor, or disables it if there is no nearby floor.
-	if floor_shad_scan.is_colliding():
-		floor_shad.global_position.y = floor_shad_scan.get_collision_point().y
-		floor_shad.visible = true
-		floor_shad.scale = Vector3(
-		# Sets the drop shadow's size based on it's distance.
-		clamp(-1 * clamp(self.global_position.y - floor_shad_scan.get_collision_point().y, 0, 5)/ 7 + 1, 0.3, 1), 1,
-		clamp(-1 * clamp(self.global_position.y - floor_shad_scan.get_collision_point().y, 0, 5)/ 7 + 1, 0.3, 1)
-		)
+	if atkCountDown > 0:
+		atkCountDown -= 1
 	else:
-		floor_shad.global_position.y = self.position.y
-		floor_shad.visible = false
+		attackCount = 0
+	if attackCount >= 4: attackCount = 0
+	emit_signal("attack_count", attackCount)
 
 
 ## Physics related code.
@@ -128,7 +145,7 @@ func _physics_process(delta: float):
 		velocity += gravity * delta
 
 	if grounded:
-		if isAttack:
+		if atkCountDown > 8 or isBlocking:
 			corrected_target_velocity = Vector3.ZERO
 			Game.delay(func(): isAttack = false, 15)
 

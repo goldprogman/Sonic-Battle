@@ -17,11 +17,17 @@ extends AnimationTree
 @export var grounded := true
 ## Is the character attacking?
 @export var attacking := false
+## Is the character blocking?
+@export var blocking := false
+## The number of consecutive attacks.
+@export var attackCount:= 0
 
 # References
 @onready var character: Character = owner
 @onready var sprite: Sprite3D = %Sprite
 @onready var floor_scan: RayCast3D = %FloorScanRay
+
+
 
 var face_left := false
 var input_active_off_delay := -1:
@@ -36,6 +42,9 @@ func _ready():
 	character.connect("left_ground", func(): grounded = false)
 	character.connect("landed", func(): grounded = true)
 	character.connect("is_attacking", func(): attacking = true)
+	character.connect("attack_count", func(count): attackCount = count)
+	character.connect("blocking", func(): blocking = true)
+	character.connect("unblocking", func(): blocking = false)
 	return
 
 
@@ -69,7 +78,7 @@ func _process(delta):
 		sprite.flip_h = face_left
 
 	if attacking:
-		print("pow")
 		attacking = false
 
+	#print(attackCount)
 	return

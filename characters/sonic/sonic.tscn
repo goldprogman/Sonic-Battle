@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://3skao5t4re3j"]
 
 [ext_resource type="PackedScene" uid="uid://42suk7rdo5uj" path="res://characters/character.tscn" id="1_2nqcm"]
-[ext_resource type="Texture2D" uid="uid://da2kchrno01ui" path="res://assets/Sonic.png" id="2_y54io"]
+[ext_resource type="Texture2D" uid="uid://da2kchrno01ui" path="res://assets/sonic/Sonic.png" id="2_y54io"]
 [ext_resource type="Script" path="res://characters/sonic/animation_tree.gd" id="3_nufnt"]
 [ext_resource type="AnimationLibrary" uid="uid://bvo7n2hqbhjn2" path="res://characters/sonic/animation_library.tres" id="3_posi2"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dsn8ociahewxv" path="res://characters/sonic/animation_tree_root.tres" id="4_wqvcq"]
