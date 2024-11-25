@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://defuj8lmd1o31"]
+
+[ext_resource type="Script" path="res://characters/skillmachine.gd" id="1_55ry1"]
+
+[node name="SkillMachine" type="Node"]
+script = ExtResource("1_55ry1")

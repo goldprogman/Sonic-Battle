@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://42suk7rdo5uj"]
+[gd_scene load_steps=12 format=3 uid="uid://42suk7rdo5uj"]
 
 [ext_resource type="Script" path="res://characters/character.gd" id="1_43dcs"]
 [ext_resource type="Shader" path="res://assets/shader/dropshadowcut.gdshader" id="2_4ka3q"]
 [ext_resource type="Shader" path="res://assets/shader/dropshadow.gdshader" id="2_hvhnt"]
+[ext_resource type="PackedScene" uid="uid://defuj8lmd1o31" path="res://characters/skillmachine.tscn" id="4_aidi3"]
+[ext_resource type="PackedScene" uid="uid://bn3ogs7bhk847" path="res://characters/skill_idle.tscn" id="5_3d44n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t1l3m"]
 radius = 0.4
@@ -93,6 +95,10 @@ mesh = SubResource("CylinderMesh_cwbj0")
 [node name="DropShadB" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.7, 0)
 mesh = SubResource("CylinderMesh_b3vxf")
+
+[node name="SkillMachine" parent="." instance=ExtResource("4_aidi3")]
+
+[node name="Idle" parent="SkillMachine" instance=ExtResource("5_3d44n")]
 
 [connection signal="body_entered" from="FloorScanArea" to="." method="_on_floor_scan_area_body_entered"]
 [connection signal="body_exited" from="FloorScanArea" to="." method="_on_floor_scan_area_body_exited"]
