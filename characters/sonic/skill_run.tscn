@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://chmijbi5rkxpc"]
+
+[ext_resource type="Script" path="res://characters/sonic/skill_run.gd" id="1_da8ua"]
+
+[node name="Run" type="Node"]
+script = ExtResource("1_da8ua")
+name_ingame = "Sonic Run"

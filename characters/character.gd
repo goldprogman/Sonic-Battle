@@ -20,7 +20,7 @@ signal attack_count(count)
 @export var air_control := 0.4
 @export var jump_gravity := Vector3.DOWN * 9.81 * 5.0
 @export var fall_gravity := Vector3.DOWN * 9.81 * 3.0
-
+var skillmachine
 
 var gravity := fall_gravity
 
@@ -29,6 +29,8 @@ var attackCount := 0
 var atkCountDown:= 0
 
 var isBlocking := false
+
+var weight: float # Traction
 
 #@onready var floor_scan: RayCast3D = %FloorScanRay
 
@@ -47,8 +49,8 @@ var grounded := true:
 		else: emit_signal("left_ground")
 		return
 ## Set the target velocity variable.
-var target_velocity := Vector2.ZERO:
-	set(val): target_velocity = val.limit_length(1.0)
+var run_velocity := Vector2.ZERO:
+	set(val): run_velocity = val.limit_length(1.0)
 
 ## Character jump function.
 func jump():
@@ -92,6 +94,8 @@ func block(isB: bool):
 
 
 func _ready():
+	skillmachine = get_node("SkillMachine")
+	skillmachine.char = self
 	if is_on_floor():
 		grounded = true
 	else:
@@ -111,52 +115,41 @@ func _process(delta):
 
 ## Physics related code.
 func _physics_process(delta: float):
-	## Checks whether the player is on the ground usng the raycast.
-#	if floor_scan.enabled: grounded = floor_scan.is_colliding()
+	weight = 1
+	skillmachine.think(delta)
+	move_and_slide()
 
-
+func doVelocity(delta: float):
 	# Turns the target velocity (Vector2) into Vector3.
-	var corrected_target_velocity := Vector3(
-		target_velocity.x,
+	var corrected_run_velocity := Vector3(
+		run_velocity.x,
 		0.0,
-		-target_velocity.y
+		-run_velocity.y
 	)
-	corrected_target_velocity *= max_speed
-
-	var weight := delta
+	corrected_run_velocity *= max_speed
 
 	# Sets the accelerations based on the if the character has a target velocity.
-	if corrected_target_velocity.length() <= 0.01: weight *= deceleration
+	if corrected_run_velocity.length() <= 0.01: weight *= deceleration
 	else:
 		weight *= acceleration
 		weight *= lerp(turning_boost, 1.0,
 			(velocity.normalized().dot(
-				corrected_target_velocity.normalized()
+				corrected_run_velocity.normalized()
 			) + 1) / 2
 		)
 
 	# Changes the weight if in the air.
 	if !grounded: weight *= air_control
-
+	
 	# Adds gravity, based on if the character is moving up or falling.
 	if !grounded:
 		if velocity.y <= 0: gravity = fall_gravity
 		if velocity.y > 0: gravity = jump_gravity
 		velocity += gravity * delta
-
-	if grounded:
-		if atkCountDown > 8 or isBlocking:
-			corrected_target_velocity = Vector3.ZERO
-			Game.delay(func(): isAttack = false, 15)
-
-
+	
 	# The target velocity Y is set to the actual velocity Y, so it can plug into the velocity without problems.
-	corrected_target_velocity.y = velocity.y
-	velocity = velocity.lerp(corrected_target_velocity, min(weight, 1.0))
-	# Sets the velocity to zero if it's low enough.
-	if velocity.length() <= 0.1: velocity = Vector3.ZERO
-
-	move_and_slide()
+	corrected_run_velocity.y = velocity.y
+	velocity = velocity.lerp(corrected_run_velocity, min(delta*weight, 1.0))
 
 
 ## Checks whether the player is on the ground usng the area.

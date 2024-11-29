@@ -51,7 +51,7 @@ func _ready():
 func _process(delta):
 	if Engine.is_editor_hint(): return
 
-	if character.target_velocity.length() >= 0.01:
+	if character.run_velocity.length() >= 0.01:
 		input_active = true
 		if input_active_off_delay >= 0: input_active_off_delay = -1
 		input_active_off_delay = Game.delay(
@@ -65,14 +65,14 @@ func _process(delta):
 	if grounded:
 		if flipping: sprite.flip_h = face_left
 		
-		if abs(character.target_velocity.x) >= 0.01:
-			face_left = character.target_velocity.x < 0.0
+		if abs(character.run_velocity.x) >= 0.01:
+			face_left = character.run_velocity.x < 0.0
 			if face_left != sprite.flip_h: flipping = true
 		set("parameters/Grounded/Moving/BlendTree/Run Speed/scale", (character.velocity.length()/10) + 0.3)
 
 	else:
-		if abs(character.target_velocity.x) >= 0.01:
-			face_left = character.target_velocity.x < 0.0
+		if abs(character.run_velocity.x) >= 0.01:
+			face_left = character.run_velocity.x < 0.0
 		
 		flipping = false
 		sprite.flip_h = face_left
