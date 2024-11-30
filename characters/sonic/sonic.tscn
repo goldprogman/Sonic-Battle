@@ -5,21 +5,25 @@
 [ext_resource type="Script" path="res://characters/sonic/animation_tree.gd" id="3_nufnt"]
 [ext_resource type="AnimationLibrary" uid="uid://bvo7n2hqbhjn2" path="res://characters/sonic/animation_library.tres" id="3_posi2"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dsn8ociahewxv" path="res://characters/sonic/animation_tree_root.tres" id="4_wqvcq"]
-[ext_resource type="PackedScene" uid="uid://chmijbi5rkxpc" path="res://characters/sonic/skill_run.tscn" id="6_is8ra"]
-[ext_resource type="PackedScene" uid="uid://cyy7e4stlpbn5" path="res://characters/sonic/skill_jump.tscn" id="7_qjph6"]
+[ext_resource type="PackedScene" uid="uid://chmijbi5rkxpc" path="res://characters/sonic/state_run.tscn" id="6_is8ra"]
+[ext_resource type="PackedScene" uid="uid://cyy7e4stlpbn5" path="res://characters/sonic/state_jump.tscn" id="7_qjph6"]
 
 [node name="Sonic" groups=["characters"] instance=ExtResource("1_2nqcm")]
 
-[node name="Sprite" parent="." index="2"]
+[node name="SkillMachine#Run" parent="." index="1" instance=ExtResource("6_is8ra")]
+
+[node name="SkillMachine#Jump" parent="." index="2" instance=ExtResource("7_qjph6")]
+
+[node name="Sprite" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 texture = ExtResource("2_y54io")
 hframes = 8
 vframes = 10
 
-[node name="FloorScanRay" parent="." index="3"]
+[node name="FloorScanRay" parent="." index="5"]
 visible = true
 
-[node name="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" parent="." index="6"]
 libraries = {
 "": ExtResource("3_posi2")
 }
@@ -28,7 +32,3 @@ libraries = {
 tree_root = ExtResource("4_wqvcq")
 "parameters/Grounded/Moving/BlendTree/Run Speed/scale" = 1.0
 script = ExtResource("3_nufnt")
-
-[node name="Run" parent="SkillMachine" index="1" instance=ExtResource("6_is8ra")]
-
-[node name="Jump" parent="SkillMachine" index="2" instance=ExtResource("7_qjph6")]

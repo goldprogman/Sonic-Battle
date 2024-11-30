@@ -1,4 +1,4 @@
-extends Skill
+extends State
 
 func enter():
 	char.jump()
@@ -8,7 +8,7 @@ func think(delta: float):
 	if(char.velocity.length() <= 0.1):
 		char.velocity = Vector3.ZERO
 	if(char.velocity.y <= 0 or char.grounded):
-		machine.goto(SkillType.RUN)
+		machine.goto("Run")
 		return
 func exit():
 	pass

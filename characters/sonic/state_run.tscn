@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chmijbi5rkxpc"]
+
+[ext_resource type="Script" path="res://characters/sonic/state_run.gd" id="1_05n2u"]
+
+[node name="Run" type="Node"]
+script = ExtResource("1_05n2u")
