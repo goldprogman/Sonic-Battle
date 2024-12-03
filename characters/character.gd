@@ -20,7 +20,7 @@ signal attack_count(count)
 @export var air_control := 0.4
 @export var jump_gravity := Vector3.DOWN * 9.81 * 5.0
 @export var fall_gravity := Vector3.DOWN * 9.81 * 3.0
-var skillmachine
+var statemachine
 
 var gravity := fall_gravity
 
@@ -94,8 +94,8 @@ func block(isB: bool):
 
 
 func _ready():
-	skillmachine = get_node("SkillMachine")
-	skillmachine.char = self
+	statemachine = get_node("StateMachine")
+	statemachine.char = self
 	if is_on_floor():
 		grounded = true
 	else:
@@ -116,7 +116,7 @@ func _process(delta):
 ## Physics related code.
 func _physics_process(delta: float):
 	weight = 1
-	skillmachine.think(delta)
+	statemachine.think(delta)
 	move_and_slide()
 
 func doVelocity(delta: float):
